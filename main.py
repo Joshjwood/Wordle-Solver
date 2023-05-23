@@ -33,15 +33,14 @@ class Wordle_Round:
         for i in range(0, 2):
             print(f"Waiting for {2 - i}...")
             time.sleep(1)
-
-    def choose_first_word(self):
         # load words
         # Get word list
         with open('words.json', 'r') as fd:
-            self.five_letter_words = json.load(fd)
-
+             self.five_letter_words = json.load(fd)
+        self.active_word_list = self.five_letter_words
         print(f"Length of word list: {len(self.five_letter_words)}")
 
+    def choose_first_word(self):
         # Filter word list for words with duplicate letters for the first guess
         # as this wastes potential guess letters
         filtered_words = filter_for_duplicate_letters(self.five_letter_words)
@@ -64,10 +63,12 @@ class Wordle_Round:
         top_words = [word for word, _ in words_with_count[:100]]
         # top_10_words = [word for word, _ in words_with_count[:10]]
         # print(top_10_words)
+
         return top_words[randint(0, len(top_words))]
 
     def choose_word_stage_2(self):
-        print(f"Length of word list: {len(self.active_word_list)}")
+        print(self.active_word_list)
+        print(f"Length of word list by the start of STAGE 2: {len(self.active_word_list)}")
         # excluded_letters = self.absent_letters
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_five = []
@@ -129,6 +130,14 @@ class Wordle_Round:
             print(f"Suggested word submission: {word_submission}")
             good = all(letter in word_submission for letter in present_letters)
 
+        word_list = []
+        for i in self.active_word_list:
+            if i == word_submission:
+                continue
+            else:
+                word_list.append(i)
+        self.active_word_list = word_list
+
         return word_submission
 
     def enter_word(self, word):
@@ -144,19 +153,23 @@ class Wordle_Round:
             if i.text == "Enter":
                 i.click()
 
-        time.sleep(0.5)
+        time.sleep(1.5)
 
     def negative_and_positive_matches(self):
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
         previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
 
         for i in previous_word_letters:
+
             if i.get_attribute("class").split(" ")[1] == "letter-absent":
                 self.absent_letters.append(i.text)
             elif i.get_attribute("class").split(" ")[1] == "letter-correct" or "letter_elsewhere":
                 self.present_letters.append(i.text)
                 self.present_letters = list(set(self.present_letters))
-        #            print(f"{i.text} - {i.get_attribute('class')}")
+            # except:
+            #     print(i.get_attribute("class").split(" "))
+
+
 
         # If you submit a word with duplicate letters, and the correct answer only has it once
         # the letter will be added to both of the above lists
@@ -174,7 +187,7 @@ class Wordle_Round:
 
         # remove words with absent letters
         new_filtered_wordlist = []
-        for word in self.five_letter_words:
+        for word in self.active_word_list:
             if not any(letter in word for letter in self.absent_letters):
                 new_filtered_wordlist.append(word)
         self.active_word_list = new_filtered_wordlist
@@ -185,8 +198,9 @@ class Wordle_Round:
                 if any(letter in word for letter in self.present_letters):
                     new_filtered_wordlist.append(word)
             self.active_word_list = new_filtered_wordlist
-            print(self.active_word_list)
-
+            #print(self.active_word_list)
+        print("----------------------")
+        print(self.active_word_list)
         time.sleep(2)
         return
 
@@ -208,7 +222,7 @@ Wordle_Round.setup()
 chosen_word = Wordle_Round.choose_first_word()
 print(chosen_word)
 Wordle_Round.enter_word(chosen_word)
-Wordle_Round.negative_and_positive_matches()
+#Wordle_Round.negative_and_positive_matches()
 
 second_word = Wordle_Round.choose_word_stage_2()
 print(second_word)
@@ -223,14 +237,18 @@ Wordle_Round.negative_and_positive_matches()
 Wordle_Round.identify_correct_letters()
 
 for round in range(0, 3):
-    word = Wordle_Round.choose_word_stage_3()
-    # except:
-    #     time.sleep(30000)
-    print(word)
-    Wordle_Round.enter_word(word)
-    Wordle_Round.negative_and_positive_matches()
-    Wordle_Round.identify_correct_letters()
+    try:
+        word = Wordle_Round.choose_word_stage_3()
+        # except:
+        #     time.sleep(30000)
+        print(word)
+        Wordle_Round.enter_word(word)
 
+        Wordle_Round.negative_and_positive_matches()
+        Wordle_Round.identify_correct_letters()
+    except:
+        print(f"You either broke it or you won. The last word was {word}.")
+        break
 time.sleep(20000)
 
 # Next task is to identify letters that are highlighted as relevant and non-relevant
