@@ -10,6 +10,7 @@ import os
 import json
 import string
 
+# This is for the initial collection of words, once they're saved in the JSON it's not needed.
 def Get5LetterWords(web_address):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get(web_address)
@@ -25,26 +26,6 @@ def Get5LetterWords(web_address):
     with open('words.json', 'w') as fd:
         json.dump(five_letter_words, fd)
         print("json dumped")
-
-def GetLetterFrequency(excluded_letters):
-    with open('words.json', 'r') as fd:
-        wlist = json.load(fd)
-    alphabet = list(string.ascii_uppercase)
-    freq = {}
-    for i in wlist:
-        for item in i:
-            if (item in freq):
-                freq[item] += 1
-            else:
-                freq[item] = 1
-
-    sorted_freq = sorted(freq.items(), key=lambda x: x[1])
-    print("below is sorted freq")
-    print(sorted_freq)
-
-    # This slice is taking the 10 most commonly used of the 26 letters
-    # in the alphabet and returning them in descending order.
-    return sorted_freq[26:15:-1]
 
 def GetLetterFrequency_v2(wlist):
     freq = {}

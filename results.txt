@@ -50,3 +50,10 @@ FIGHT | 5th guess | SUCCESS
 COOCH | 6th guess | FAIL
 RUMOR | 4th guess | SUCCESS
 PHONE | 4th guess | SUCCESS
+ILIAC | 5th guess | SUCCESS
+LEASH | 4th guess | SUCCESS
+SPIRE | 5th guess | SUCCESS
+TOKEN | 4th guess | SUCCESS
+HUSSY | 4th guess | SUCCESS
+SWELL | 6th guess | SUCCESS
+EPOXY | 7th guess | INIT

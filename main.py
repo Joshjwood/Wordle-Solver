@@ -30,8 +30,6 @@ class Wordle_Round:
         self.present_letters = []
         self.correct_letters = ["", "", "", "", ""]
 
-        # Clear the initial popup
-
     def setup(self):
         self.driver.get("https://wordlegame.org/")
         for i in range(0, 2):
@@ -65,8 +63,6 @@ class Wordle_Round:
             words_with_count.append((word, count))
         words_with_count.sort(key=lambda x: x[1], reverse=True)
         top_words = [word for word, _ in words_with_count[:100]]
-        # top_10_words = [word for word, _ in words_with_count[:10]]
-        # print(top_10_words)
         word_submission = top_words[randint(0, len(top_words))]
         self.tested_letters = [i for i in word_submission]
         print(f"Tested letters: {self.tested_letters}")
@@ -74,12 +70,8 @@ class Wordle_Round:
 
 
     def choose_word_stage_2(self):
-        #print(self.active_word_list)
-        #print(f"Length of word list by the start of STAGE 2: {len(self.active_word_list)}")
-        # excluded_letters = self.absent_letters
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_fifteen = []
-        # print(f"Letter Freq = {letter_frequency}")
         for i in range(0, 15):
             if letter_frequency[i][0] in self.tested_letters:
                 continue
@@ -105,8 +97,6 @@ class Wordle_Round:
     def choose_word_stage_3(self):
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
         print(f"Number of Locked Rows: {len(all_locked_rows)}")
-        previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
-
         print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_five = []
@@ -274,6 +264,7 @@ while True:
 
     # Two further exploratory submissions
     for round in range(0, 2):
+        print("---------------------------------------------")
         word = WordleRound.choose_word_stage_2()
         WordleRound.enter_word(word)
         WordleRound.negative_and_positive_matches()
@@ -282,6 +273,7 @@ while True:
     # Guessing in earnest x 3
     count = 3
     for round in range(0, 4):
+        print("---------------------------------------------")
         count += 1
         try:
             word = WordleRound.choose_word_stage_3()
