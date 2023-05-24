@@ -36,3 +36,17 @@ CIDER | 4th guess.
 Failed: SHEER | 6th guess.
 TIPSY | 5th guess.
 FIERY | 6th guess.
+OFTEN | 6th guess.
+PLACE | 5th guess.
+GRAVE | 5th guess.
+PLIED | 4th guess.
+EYRIE | 6th guess.
+SONAR | 4th guess.
+OPTIC | 6th guess.
+ELATE | 6th guess.
+ANGLE | 4th guess.
+testing
+SOLAR | 5th guess | FAIL
+WHEAT | 4th guess | FAIL
+SMOKE | 6th guess | FAIL
+SCALY | 4th guess | FAIL

@@ -72,6 +72,7 @@ class Wordle_Round:
         print(f"Tested letters: {self.tested_letters}")
         return word_submission
 
+
     def choose_word_stage_2(self):
         #print(self.active_word_list)
         #print(f"Length of word list by the start of STAGE 2: {len(self.active_word_list)}")
@@ -99,7 +100,6 @@ class Wordle_Round:
         word_submission = top_10_words[randint(0, 9)]
         for i in word_submission:
             self.tested_letters.append(i)
-
         return word_submission
 
     def choose_word_stage_3(self):
@@ -107,19 +107,24 @@ class Wordle_Round:
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
         print(f"Number of Locked Rows: {len(all_locked_rows)}")
         previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
-
+        won = ""
         # Check if it's over and we lost
         if len(all_locked_rows) >= 6:
             won = True
             for i in previous_word_letters:
                 if i.get_attribute("class").split(" ")[1] != "letter-correct":
                     won = False
+                    print("not letter-correct")
                 else:
+                    print("letter-correct")
                     continue
             if won == True:
-                return f"Won with: {previous_word_letters.text}"
+                print("Won on the last turn.")
+                return previous_word_letters.text, "FIRST"
+
             if won == False:
-                return f"Failed with: {previous_word_letters.text}"
+                print("Used all turns and failed")
+                return previous_word_letters.text, "SECOND"
 
         # Check if it's over and we won
         complete = True
@@ -129,7 +134,7 @@ class Wordle_Round:
             else:
                 continue
         if complete == True:
-            return f"{previous_word_letters.text}"
+            return previous_word_letters.text, "THIRD"
 
         print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
@@ -179,7 +184,13 @@ class Wordle_Round:
                 word_list.append(i)
         self.active_word_list = word_list
 
-        return word_submission
+
+        if won == True:
+            finish_state = "SUCCESS"
+        else:
+            finish_state = "FAIL"
+
+        return word_submission, finish_state
 
     def enter_word(self, word):
         letter_keys = self.driver.find_elements(By.CLASS_NAME, 'Game-keyboard-button')
@@ -283,7 +294,7 @@ while True:
     for round in range(0, 4):
         count += 1
         try:
-            word = WordleRound.choose_word_stage_3()
+            word, finish_state = WordleRound.choose_word_stage_3()
             WordleRound.enter_word(word)
 
             WordleRound.negative_and_positive_matches()
@@ -291,7 +302,7 @@ while True:
         except:
             print(f"You either broke it or you won. The last word was {word}.")
             with open("results.txt", 'a') as file:
-                file.write(word + f" | {count}th guess.\n")
+                file.write(word + f" | {count}th guess | {finish_state}\n")
             break
     time.sleep(3)
     WordleRound.NextGame()
