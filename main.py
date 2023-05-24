@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 import os
 import json
@@ -15,7 +16,8 @@ from random import randint
 
 
 class Wordle_Round:
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
         self.five_letter_words = []
@@ -225,38 +227,47 @@ class Wordle_Round:
                 self.correct_letters[i] = previous_word_letters[i].text
         print(f"Known letters: {self.correct_letters}")
 
-# Establish game
-Wordle_Round = Wordle_Round()
-Wordle_Round.setup()
+    def NextGame(self):
+        actions = ActionChains(self.driver)
+        actions.send_keys(Keys.ESCAPE)
 
-# Initial submission
-chosen_word = Wordle_Round.choose_first_word()
-Wordle_Round.enter_word(chosen_word)
-Wordle_Round.negative_and_positive_matches()
-Wordle_Round.identify_correct_letters()
+count = 0
+while True:
+    count += 1
+    # Establish game
+    WordleRound = Wordle_Round(f"Round {count}.")
+    WordleRound.setup()
 
-# Two further exploratory submissions
-for round in range(0, 2):
-    word = Wordle_Round.choose_word_stage_2()
-    Wordle_Round.enter_word(word)
-    Wordle_Round.negative_and_positive_matches()
-    Wordle_Round.identify_correct_letters()
+    # Initial submission
+    chosen_word = WordleRound.choose_first_word()
+    WordleRound.enter_word(chosen_word)
+    WordleRound.negative_and_positive_matches()
+    WordleRound.identify_correct_letters()
 
-# Guessing in earnest x 3
-for round in range(0, 3):
-    try:
-        word = Wordle_Round.choose_word_stage_3()
-        # except:
-        #     time.sleep(30000)
-        #print(word)
-        Wordle_Round.enter_word(word)
+    # Two further exploratory submissions
+    for round in range(0, 2):
+        word = WordleRound.choose_word_stage_2()
+        WordleRound.enter_word(word)
+        WordleRound.negative_and_positive_matches()
+        WordleRound.identify_correct_letters()
 
-        Wordle_Round.negative_and_positive_matches()
-        Wordle_Round.identify_correct_letters()
-    except:
-        print(f"You either broke it or you won. The last word was {word}.")
-        break
-time.sleep(20000)
+    # Guessing in earnest x 3
+    for round in range(0, 3):
+        try:
+            word = WordleRound.choose_word_stage_3()
+            # except:
+            #     time.sleep(30000)
+            #print(word)
+            WordleRound.enter_word(word)
+
+            WordleRound.negative_and_positive_matches()
+            WordleRound.identify_correct_letters()
+        except:
+            print(f"You either broke it or you won. The last word was {word}.")
+            break
+    time.sleep(3)
+    WordleRound.NextGame()
+    del WordleRound
 
 # Next task is to identify letters that are highlighted as relevant and non-relevant
 # Will need to find a way to get a new list of words that have letters that ARE or ARENT in the indicated places
