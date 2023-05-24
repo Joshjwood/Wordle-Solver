@@ -1,0 +1,38 @@
+TAUNT
+MODAL
+SKULL
+TERRA | 5th guess.
+PIGGY | 4th guess.
+ENJOY | 5th guess.
+POKER | 5th guess.
+CRUMB | 5th guess.
+NADIR | 4th guess.
+ULCER | 5th guess.
+ACTOR | 5th guess.
+SPORE | 4th guess.
+PUTTY | 4th guess.
+RAYON | 5th guess.
+SNORE | 4th guess.
+SHRUG | 4th guess.
+CRESS | 5th guess.
+ACORN | 4th guess.
+STRAW | 5th guess.
+DETER | 5th guess.
+PALER | 5th guess.
+ASHEN | 4th guess.
+HEARD | 4th guess.
+RATIO | 4th guess.
+Failed: STAGE | 6th guess.
+TALLY | 4th guess.
+WOKEN | 4th guess.
+CHAIN | 5th guess.
+SOOTY | 6th guess.
+ANGLE | 4th guess.
+CLANK | 5th guess.
+BAGEL | 4th guess.
+STINT | 5th guess.
+DUNCE | 4th guess.
+CIDER | 4th guess.
+Failed: SHEER | 6th guess.
+TIPSY | 5th guess.
+FIERY | 6th guess.

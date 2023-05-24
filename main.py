@@ -103,6 +103,34 @@ class Wordle_Round:
         return word_submission
 
     def choose_word_stage_3(self):
+        # Is it over?
+        all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
+        print(f"Number of Locked Rows: {len(all_locked_rows)}")
+        previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
+
+        # Check if it's over and we lost
+        if len(all_locked_rows) >= 6:
+            won = True
+            for i in previous_word_letters:
+                if i.get_attribute("class").split(" ")[1] != "letter-correct":
+                    won = False
+                else:
+                    continue
+            if won == True:
+                return f"Won with: {previous_word_letters.text}"
+            if won == False:
+                return f"Failed with: {previous_word_letters.text}"
+
+        # Check if it's over and we won
+        complete = True
+        for i in previous_word_letters:
+            if i.get_attribute("class").split(" ")[1] != "letter-correct":
+                complete = False
+            else:
+                continue
+        if complete == True:
+            return f"{previous_word_letters.text}"
+
         print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_five = []
@@ -233,7 +261,6 @@ class Wordle_Round:
 
 count = 0
 while True:
-    count += 1
     # Establish game
     WordleRound = Wordle_Round(f"Round {count}.")
     WordleRound.setup()
@@ -252,18 +279,19 @@ while True:
         WordleRound.identify_correct_letters()
 
     # Guessing in earnest x 3
-    for round in range(0, 3):
+    count = 2
+    for round in range(0, 4):
+        count += 1
         try:
             word = WordleRound.choose_word_stage_3()
-            # except:
-            #     time.sleep(30000)
-            #print(word)
             WordleRound.enter_word(word)
 
             WordleRound.negative_and_positive_matches()
             WordleRound.identify_correct_letters()
         except:
             print(f"You either broke it or you won. The last word was {word}.")
+            with open("results.txt", 'a') as file:
+                file.write(word + f" | {count}th guess.\n")
             break
     time.sleep(3)
     WordleRound.NextGame()
