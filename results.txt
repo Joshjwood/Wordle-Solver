@@ -46,7 +46,7 @@ OPTIC | 6th guess.
 ELATE | 6th guess.
 ANGLE | 4th guess.
 testing
-SOLAR | 5th guess | FAIL
-WHEAT | 4th guess | FAIL
-SMOKE | 6th guess | FAIL
-SCALY | 4th guess | FAIL
+FIGHT | 5th guess | SUCCESS
+COOCH | 6th guess | FAIL
+RUMOR | 4th guess | SUCCESS
+PHONE | 4th guess | SUCCESS

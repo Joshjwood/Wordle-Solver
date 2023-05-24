@@ -103,43 +103,13 @@ class Wordle_Round:
         return word_submission
 
     def choose_word_stage_3(self):
-        # Is it over?
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
         print(f"Number of Locked Rows: {len(all_locked_rows)}")
         previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
-        won = ""
-        # Check if it's over and we lost
-        if len(all_locked_rows) >= 6:
-            won = True
-            for i in previous_word_letters:
-                if i.get_attribute("class").split(" ")[1] != "letter-correct":
-                    won = False
-                    print("not letter-correct")
-                else:
-                    print("letter-correct")
-                    continue
-            if won == True:
-                print("Won on the last turn.")
-                return previous_word_letters.text, "FIRST"
-
-            if won == False:
-                print("Used all turns and failed")
-                return previous_word_letters.text, "SECOND"
-
-        # Check if it's over and we won
-        complete = True
-        for i in previous_word_letters:
-            if i.get_attribute("class").split(" ")[1] != "letter-correct":
-                complete = False
-            else:
-                continue
-        if complete == True:
-            return previous_word_letters.text, "THIRD"
 
         print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_five = []
-        # print(f"Letter Freq = {letter_frequency}")
         top_x = 5
         if len(letter_frequency) < top_x:
             top_x = len(letter_frequency)
@@ -151,17 +121,13 @@ class Wordle_Round:
                 # print(word)
                 for i in range(0, 5):
                     if word[i] == self.correct_letters[i]:
-                        # print(f"{word[i]} : {self.present_letters[i]}")
                         filtered_by_correct_letters.append(word)
-
-            #print(f"List with correct positioning: {filtered_by_correct_letters}")
             self.active_word_list = filtered_by_correct_letters
 
         good = False
 
         while not good:
             word_submission = max(set(self.active_word_list), key=self.active_word_list.count)
-            #print(f"Word submission: {word_submission}")
             word_list = []
             for i in self.active_word_list:
                 if i == word_submission:
@@ -173,7 +139,7 @@ class Wordle_Round:
             for i in self.present_letters:
                 if i.isalpha():
                     present_letters.append(i)
-            print(f"Considering submission... {word_submission}")
+            #print(f"Considering submission... {word_submission}")
             good = all(letter in word_submission for letter in present_letters)
 
         word_list = []
@@ -184,13 +150,41 @@ class Wordle_Round:
                 word_list.append(i)
         self.active_word_list = word_list
 
+        return word_submission
 
-        if won == True:
+    def CheckIfGameOver(self):
+        all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
+        previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
+        finish_state = "INIT"
+        # Check if it's over and we lost
+        if len(all_locked_rows) >= 6:
+            won = True
+            for i in previous_word_letters:
+                if i.get_attribute("class").split(" ")[1] != "letter-correct":
+                    won = False
+                    #print("not letter-correct")
+                else:
+                    #print("letter-correct")
+                    continue
+            if won == True:
+                print("Won on the last turn.")
+                finish_state = "SUCCESS"
+
+            if won == False:
+                print("Used all turns and failed")
+                finish_state = "FAIL"
+
+        # Check if it's over and we won
+        complete = True
+        for i in previous_word_letters:
+            if i.get_attribute("class").split(" ")[1] != "letter-correct":
+                complete = False
+            else:
+                continue
+        if complete == True:
+            print("THIS IS SUCCESS EXIT")
             finish_state = "SUCCESS"
-        else:
-            finish_state = "FAIL"
-
-        return word_submission, finish_state
+        return finish_state
 
     def enter_word(self, word):
         letter_keys = self.driver.find_elements(By.CLASS_NAME, 'Game-keyboard-button')
@@ -250,9 +244,6 @@ class Wordle_Round:
                 if any(letter in word for letter in self.present_letters):
                     new_filtered_wordlist.append(word)
             self.active_word_list = new_filtered_wordlist
-            #print(self.active_word_list)
-        print("----------------------")
-        #print(self.active_word_list)
         time.sleep(2)
         return
 
@@ -262,7 +253,6 @@ class Wordle_Round:
 
         for i in range(0, len(previous_word_letters)):
             if previous_word_letters[i].get_attribute("class").split(" ")[1] == "letter-correct":
-                #print(previous_word_letters[i].text)
                 self.correct_letters[i] = previous_word_letters[i].text
         print(f"Known letters: {self.correct_letters}")
 
@@ -290,12 +280,26 @@ while True:
         WordleRound.identify_correct_letters()
 
     # Guessing in earnest x 3
-    count = 2
+    count = 3
     for round in range(0, 4):
         count += 1
         try:
-            word, finish_state = WordleRound.choose_word_stage_3()
+            word = WordleRound.choose_word_stage_3()
             WordleRound.enter_word(word)
+            finish_state = WordleRound.CheckIfGameOver()
+
+            if finish_state == "SUCCESS":
+                print(f"Success! The last word was {word}.")
+                with open("results.txt", 'a') as file:
+                    file.write(word + f" | {count}th guess | {finish_state}\n")
+                break
+            elif finish_state == "INIT":
+                print("Game continuing")
+            elif finish_state == "FAIL":
+                print("Game over. FAIL")
+                with open("results.txt", 'a') as file:
+                    file.write(word + f" | {count}th guess | {finish_state}\n")
+                break
 
             WordleRound.negative_and_positive_matches()
             WordleRound.identify_correct_letters()
