@@ -22,6 +22,8 @@ class Wordle_Round:
         self.flw_no_dupe_letters = []
         self.active_word_list = []
 
+        self.tested_letters = []
+
         self.absent_letters = []
         self.present_letters = []
         self.correct_letters = ["", "", "", "", ""]
@@ -63,19 +65,24 @@ class Wordle_Round:
         top_words = [word for word, _ in words_with_count[:100]]
         # top_10_words = [word for word, _ in words_with_count[:10]]
         # print(top_10_words)
-
-        return top_words[randint(0, len(top_words))]
+        word_submission = top_words[randint(0, len(top_words))]
+        self.tested_letters = [i for i in word_submission]
+        print(f"Tested letters: {self.tested_letters}")
+        return word_submission
 
     def choose_word_stage_2(self):
-        print(self.active_word_list)
-        print(f"Length of word list by the start of STAGE 2: {len(self.active_word_list)}")
+        #print(self.active_word_list)
+        #print(f"Length of word list by the start of STAGE 2: {len(self.active_word_list)}")
         # excluded_letters = self.absent_letters
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
-        top_five = []
+        top_fifteen = []
         # print(f"Letter Freq = {letter_frequency}")
-        for i in range(0, 5):
-            top_five.append(letter_frequency[i][0])
-        print(f"Top five most common letters in word-list: {top_five}")
+        for i in range(0, 15):
+            if letter_frequency[i][0] in self.tested_letters:
+                continue
+            else:
+                top_fifteen.append(letter_frequency[i][0])
+        print(f"Top {len(top_fifteen)} common letters in word-list: {top_fifteen}")
 
         filtered_words = filter_for_duplicate_letters(self.active_word_list)
 
@@ -83,14 +90,18 @@ class Wordle_Round:
         # Find the words which contain the most letters from the list of the most common letters
         words_with_count = []
         for word in filtered_words:
-            count = sum(word.count(letter) for letter in top_five)
+            count = sum(word.count(letter) for letter in top_fifteen)
             words_with_count.append((word, count))
         words_with_count.sort(key=lambda x: x[1], reverse=True)
         top_10_words = [word for word, _ in words_with_count[:10]]
-        return top_10_words[randint(0, 9)]
+        word_submission = top_10_words[randint(0, 9)]
+        for i in word_submission:
+            self.tested_letters.append(i)
+
+        return word_submission
 
     def choose_word_stage_3(self):
-        print(f"Length of word list: {len(self.active_word_list)}")
+        print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_five = []
         # print(f"Letter Freq = {letter_frequency}")
@@ -108,14 +119,14 @@ class Wordle_Round:
                         # print(f"{word[i]} : {self.present_letters[i]}")
                         filtered_by_correct_letters.append(word)
 
-            print(f"List with correct positioning: {filtered_by_correct_letters}")
+            #print(f"List with correct positioning: {filtered_by_correct_letters}")
             self.active_word_list = filtered_by_correct_letters
 
         good = False
 
         while not good:
             word_submission = max(set(self.active_word_list), key=self.active_word_list.count)
-            print(f"Word submission: {word_submission}")
+            #print(f"Word submission: {word_submission}")
             word_list = []
             for i in self.active_word_list:
                 if i == word_submission:
@@ -127,7 +138,7 @@ class Wordle_Round:
             for i in self.present_letters:
                 if i.isalpha():
                     present_letters.append(i)
-            print(f"Suggested word submission: {word_submission}")
+            print(f"Considering submission... {word_submission}")
             good = all(letter in word_submission for letter in present_letters)
 
         word_list = []
@@ -182,7 +193,7 @@ class Wordle_Round:
                 new_absent.append(letter)
         self.absent_letters = new_absent
 
-        print(f"Absent letters: {self.absent_letters}")
+        print(f"Incorrect letters: {self.absent_letters}")
         print(f"Present letters: {self.present_letters}")
 
         # remove words with absent letters
@@ -200,7 +211,7 @@ class Wordle_Round:
             self.active_word_list = new_filtered_wordlist
             #print(self.active_word_list)
         print("----------------------")
-        print(self.active_word_list)
+        #print(self.active_word_list)
         time.sleep(2)
         return
 
@@ -210,38 +221,34 @@ class Wordle_Round:
 
         for i in range(0, len(previous_word_letters)):
             if previous_word_letters[i].get_attribute("class").split(" ")[1] == "letter-correct":
-                print(previous_word_letters[i].text)
+                #print(previous_word_letters[i].text)
                 self.correct_letters[i] = previous_word_letters[i].text
-        print(f"Correct letter list: {self.correct_letters}")
+        print(f"Known letters: {self.correct_letters}")
 
-
+# Establish game
 Wordle_Round = Wordle_Round()
-#
 Wordle_Round.setup()
 
+# Initial submission
 chosen_word = Wordle_Round.choose_first_word()
-print(chosen_word)
 Wordle_Round.enter_word(chosen_word)
-#Wordle_Round.negative_and_positive_matches()
-
-second_word = Wordle_Round.choose_word_stage_2()
-print(second_word)
-Wordle_Round.enter_word(second_word)
 Wordle_Round.negative_and_positive_matches()
 Wordle_Round.identify_correct_letters()
 
-third_word = Wordle_Round.choose_word_stage_2()
-print(third_word)
-Wordle_Round.enter_word(third_word)
-Wordle_Round.negative_and_positive_matches()
-Wordle_Round.identify_correct_letters()
+# Two further exploratory submissions
+for round in range(0, 2):
+    word = Wordle_Round.choose_word_stage_2()
+    Wordle_Round.enter_word(word)
+    Wordle_Round.negative_and_positive_matches()
+    Wordle_Round.identify_correct_letters()
 
+# Guessing in earnest x 3
 for round in range(0, 3):
     try:
         word = Wordle_Round.choose_word_stage_3()
         # except:
         #     time.sleep(30000)
-        print(word)
+        #print(word)
         Wordle_Round.enter_word(word)
 
         Wordle_Round.negative_and_positive_matches()
