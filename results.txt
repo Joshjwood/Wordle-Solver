@@ -1,51 +1,3 @@
-TAUNT
-MODAL
-SKULL
-TERRA | 5th guess.
-PIGGY | 4th guess.
-ENJOY | 5th guess.
-POKER | 5th guess.
-CRUMB | 5th guess.
-NADIR | 4th guess.
-ULCER | 5th guess.
-ACTOR | 5th guess.
-SPORE | 4th guess.
-PUTTY | 4th guess.
-RAYON | 5th guess.
-SNORE | 4th guess.
-SHRUG | 4th guess.
-CRESS | 5th guess.
-ACORN | 4th guess.
-STRAW | 5th guess.
-DETER | 5th guess.
-PALER | 5th guess.
-ASHEN | 4th guess.
-HEARD | 4th guess.
-RATIO | 4th guess.
-Failed: STAGE | 6th guess.
-TALLY | 4th guess.
-WOKEN | 4th guess.
-CHAIN | 5th guess.
-SOOTY | 6th guess.
-ANGLE | 4th guess.
-CLANK | 5th guess.
-BAGEL | 4th guess.
-STINT | 5th guess.
-DUNCE | 4th guess.
-CIDER | 4th guess.
-Failed: SHEER | 6th guess.
-TIPSY | 5th guess.
-FIERY | 6th guess.
-OFTEN | 6th guess.
-PLACE | 5th guess.
-GRAVE | 5th guess.
-PLIED | 4th guess.
-EYRIE | 6th guess.
-SONAR | 4th guess.
-OPTIC | 6th guess.
-ELATE | 6th guess.
-ANGLE | 4th guess.
-testing
 FIGHT | 5th guess | SUCCESS
 COOCH | 6th guess | FAIL
 RUMOR | 4th guess | SUCCESS
@@ -56,4 +8,416 @@ SPIRE | 5th guess | SUCCESS
 TOKEN | 4th guess | SUCCESS
 HUSSY | 4th guess | SUCCESS
 SWELL | 6th guess | SUCCESS
-EPOXY | 7th guess | INIT
+TUTOR | 5th guess | SUCCESS
+STAID | 4th guess | SUCCESS
+ISSUE | 5th guess | SUCCESS
+MAJOR | 5th guess | SUCCESS
+DRAKE | 4th guess | SUCCESS
+WAFER | 6th guess | SUCCESS
+AWARE | 6th guess | SUCCESS
+ROVER | 6th guess | SUCCESS
+PRANK | 4th guess | SUCCESS
+SOUTH | 4th guess | SUCCESS
+CLEAN | 5th guess | SUCCESS
+CREST | 4th guess | SUCCESS
+ABORT | 4th guess | SUCCESS
+SWEAT | 6th guess | FAIL
+RECAP | 6th guess | SUCCESS
+LOAMY | 4th guess | SUCCESS
+NEXUS | 4th guess | SUCCESS
+PALED | 6th guess | FAIL
+CHAIR | 4th guess | SUCCESS
+SHOOK | 4th guess | SUCCESS
+QUILL | 4th guess | SUCCESS
+CARGO | 5th guess | SUCCESS
+IMPLY | 4th guess | SUCCESS
+SEMEN | 5th guess | SUCCESS
+TAPER | 5th guess | SUCCESS
+INERT | 4th guess | SUCCESS
+AROSE | 4th guess | SUCCESS
+SCORE | 5th guess | SUCCESS
+QUILT | 4th guess | SUCCESS
+UNDUE | 5th guess | SUCCESS
+BURRO | 5th guess | SUCCESS
+PAVER | 6th guess | FAIL
+ERECT | 5th guess | SUCCESS
+FROND | 4th guess | SUCCESS
+SCREW | 6th guess | FAIL
+HAZEL | 5th guess | SUCCESS
+CHORD | 4th guess | SUCCESS
+CLASH | 4th guess | SUCCESS
+FOYER | 4th guess | SUCCESS
+BASIS | 4th guess | SUCCESS
+SENSE | 4th guess | SUCCESS
+NAVEL | 4th guess | SUCCESS
+EXULT | 5th guess | SUCCESS
+TAKER | 6th guess | FAIL
+NEWER | 5th guess | SUCCESS
+CATTY | 5th guess | SUCCESS
+EQUIP | 4th guess | SUCCESS
+SPELL | 6th guess | SUCCESS
+QUAIL | 5th guess | SUCCESS
+CRIME | 6th guess | SUCCESS
+BEZEL | 6th guess | FAIL
+TWIRL | 4th guess | SUCCESS
+CRAZY | 5th guess | SUCCESS
+SOCKS | 4th guess | SUCCESS
+PEACH | 4th guess | SUCCESS
+SHUNT | 4th guess | SUCCESS
+VOUCH | 4th guess | SUCCESS
+BARIC | 6th guess | FAIL
+REPAY | 4th guess | SUCCESS
+TUMMY | 6th guess | SUCCESS
+INANE | 4th guess | SUCCESS
+CURSE | 4th guess | SUCCESS
+TOUGH | 5th guess | SUCCESS
+LOATH | 4th guess | SUCCESS
+GAUNT | 4th guess | SUCCESS
+DUSTY | 4th guess | SUCCESS
+SCOOP | 6th guess | SUCCESS
+MAXIM | 5th guess | SUCCESS
+JUMPY | 6th guess | SUCCESS
+VELDT | 4th guess | SUCCESS
+SAUTE | 4th guess | SUCCESS
+CRUMP | 4th guess | SUCCESS
+DRUNK | 4th guess | SUCCESS
+ROBIN | 5th guess | SUCCESS
+GOODY | 4th guess | SUCCESS
+FORTE | 4th guess | SUCCESS
+AMPLE | 4th guess | SUCCESS
+WHORL | 4th guess | SUCCESS
+FIRST | 4th guess | SUCCESS
+TROOP | 4th guess | SUCCESS
+SULLY | 6th guess | SUCCESS
+TOOTH | 6th guess | SUCCESS
+PINEY | 4th guess | SUCCESS
+GRILL | 4th guess | SUCCESS
+BRUNT | 4th guess | SUCCESS
+QUARK | 4th guess | SUCCESS
+LIGHT | 4th guess | SUCCESS
+TRUMP | 4th guess | SUCCESS
+PARED | 6th guess | FAIL
+PARKA | 4th guess | SUCCESS
+MUSTY | 6th guess | SUCCESS
+GAMER | 4th guess | SUCCESS
+COMMA | 4th guess | SUCCESS
+CHAIN | 4th guess | SUCCESS
+RENAL | 4th guess | SUCCESS
+SCRUB | 6th guess | SUCCESS
+DROSS | 5th guess | SUCCESS
+NEEDY | 4th guess | SUCCESS
+RAISE | 5th guess | SUCCESS
+COXES | 6th guess | FAIL
+HILLY | 6th guess | SUCCESS
+AXELS | 6th guess | FAIL
+ROUGE | 4th guess | SUCCESS
+TATTY | 6th guess | FAIL
+STOKE | 4th guess | SUCCESS
+CREEP | 6th guess | INIT
+ALLAY | 4th guess | SUCCESS
+WEDGE | 5th guess | SUCCESS
+THROW | 5th guess | SUCCESS
+GOURD | 6th guess | SUCCESS
+SEVEN | 4th guess | SUCCESS
+LACER | 6th guess | FAIL
+TOAST | 5th guess | SUCCESS
+AMAZE | 6th guess | SUCCESS
+PREEN | 4th guess | SUCCESS
+STAMP | 4th guess | SUCCESS
+WHALE | 5th guess | SUCCESS
+DRAFT | 5th guess | SUCCESS
+SEDER | 6th guess | FAIL
+SWORE | 5th guess | SUCCESS
+FERAL | 5th guess | SUCCESS
+CREEP | 6th guess | INIT
+SEMEN | 6th guess | SUCCESS
+SWEPT | 6th guess | SUCCESS
+DANDY | 6th guess | SUCCESS
+KOALA | 4th guess | SUCCESS
+BULLY | 5th guess | SUCCESS
+SHIRK | 5th guess | SUCCESS
+AXIAL | 6th guess | SUCCESS
+IONIC | 4th guess | SUCCESS
+RISEN | 4th guess | SUCCESS
+WHISH | 6th guess | FAIL
+PRUNE | 6th guess | SUCCESS
+AGREE | 6th guess | SUCCESS
+STUNG | 5th guess | SUCCESS
+DOLLY | 4th guess | SUCCESS
+XENON | 6th guess | FAIL
+AMAZE | 5th guess | SUCCESS
+MOUTH | 4th guess | SUCCESS
+SWEAT | 4th guess | SUCCESS
+FETAL | 4th guess | SUCCESS
+SWAMI | 5th guess | SUCCESS
+SLOOP | 5th guess | SUCCESS
+FORUM | 4th guess | SUCCESS
+DETER | 4th guess | SUCCESS
+KNAVE | 4th guess | SUCCESS
+LUMEN | 4th guess | SUCCESS
+ADAGE | 4th guess | SUCCESS
+OUTER | 6th guess | SUCCESS
+BONED | 6th guess | FAIL
+VOWER | 6th guess | FAIL
+RIVET | 5th guess | SUCCESS
+CIGAR | 4th guess | SUCCESS
+TEMPO | 5th guess | SUCCESS
+DRAKE | 6th guess | FAIL
+SHINE | 4th guess | SUCCESS
+EDICT | 5th guess | SUCCESS
+PADDY | 6th guess | SUCCESS
+LEAPT | 4th guess | SUCCESS
+NADIR | 4th guess | SUCCESS
+LEVEE | 6th guess | FAIL
+FLAME | 6th guess | SUCCESS
+SMASH | 4th guess | SUCCESS
+GLAND | 4th guess | SUCCESS
+MERIT | 4th guess | SUCCESS
+DOLLY | 6th guess | FAIL
+WORST | 4th guess | SUCCESS
+CHILI | 4th guess | SUCCESS
+SCION | 5th guess | SUCCESS
+BEGAT | 4th guess | SUCCESS
+STACK | 5th guess | SUCCESS
+PAGED | 6th guess | FAIL
+SIXTY | 5th guess | SUCCESS
+AUTOS | 6th guess | FAIL
+CRYPT | 4th guess | SUCCESS
+BULGE | 4th guess | SUCCESS
+RIGOR | 5th guess | SUCCESS
+SONAR | 6th guess | SUCCESS
+COMET | 4th guess | SUCCESS
+NANNY | 6th guess | SUCCESS
+HOUND | 4th guess | SUCCESS
+HAMES | 6th guess | FAIL
+HORDE | 4th guess | SUCCESS
+CHEST | 4th guess | SUCCESS
+INANE | 6th guess | SUCCESS
+PEACH | 5th guess | SUCCESS
+TWINS | 5th guess | SUCCESS
+STORK | 4th guess | SUCCESS
+LAVAS | 6th guess | FAIL
+INTER | 4th guess | SUCCESS
+CLOAK | 4th guess | SUCCESS
+HUMUS | 4th guess | SUCCESS
+FRONT | 5th guess | SUCCESS
+AUGUR | 4th guess | SUCCESS
+BLURT | 4th guess | SUCCESS
+FINCH | 6th guess | SUCCESS
+LINGO | 6th guess | SUCCESS
+FECAL | 5th guess | SUCCESS
+SOOTY | 6th guess | FAIL
+DUMPY | 4th guess | SUCCESS
+GUAVA | 5th guess | SUCCESS
+DRANK | 5th guess | SUCCESS
+EVOKE | 6th guess | SUCCESS
+DATUM | 4th guess | SUCCESS
+PROVE | 5th guess | SUCCESS
+OVOID | 5th guess | SUCCESS
+NASTY | 5th guess | SUCCESS
+BENCH | 4th guess | SUCCESS
+NUDGE | 5th guess | SUCCESS
+MULCH | 4th guess | SUCCESS
+EJECT | 4th guess | SUCCESS
+IVORY | 4th guess | SUCCESS
+AROMA | 6th guess | SUCCESS
+SADLY | 4th guess | SUCCESS
+GREAT | 4th guess | SUCCESS
+DROOL | 5th guess | SUCCESS
+CHALK | 4th guess | SUCCESS
+WINCE | 5th guess | SUCCESS
+AGLOW | 4th guess | SUCCESS
+PUREE | 4th guess | SUCCESS
+CUSHY | 6th guess | FAIL
+FORTE | 5th guess | SUCCESS
+SEVEN | 4th guess | SUCCESS
+IDEAL | 4th guess | SUCCESS
+BATCH | 6th guess | FAIL
+ROACH | 4th guess | SUCCESS
+WATER | 4th guess | SUCCESS
+CHARM | 5th guess | SUCCESS
+MINER | 5th guess | SUCCESS
+STACK | 5th guess | SUCCESS
+BOARD | 4th guess | SUCCESS
+RABID | 4th guess | SUCCESS
+GRILL | 4th guess | SUCCESS
+MARCH | 5th guess | SUCCESS
+RANDY | 5th guess | SUCCESS
+DATUM | 4th guess | SUCCESS
+STYLE | 4th guess | SUCCESS
+LEANT | 6th guess | FAIL
+JIBER | 6th guess | FAIL
+DOPED | 6th guess | FAIL
+IDIOT | 4th guess | SUCCESS
+SNOOP | 5th guess | SUCCESS
+RAZOR | 4th guess | SUCCESS
+AGAPE | 5th guess | SUCCESS
+AFTER | 6th guess | SUCCESS
+AGLOW | 4th guess | SUCCESS
+BRUSH | 5th guess | SUCCESS
+THICK | 5th guess | SUCCESS
+BLADE | 5th guess | SUCCESS
+GNASH | 4th guess | SUCCESS
+LOAMY | 4th guess | SUCCESS
+TYING | 5th guess | SUCCESS
+FAIRY | 4th guess | SUCCESS
+SCREW | 4th guess | SUCCESS
+LEDGE | 5th guess | SUCCESS
+CREEP | 4th guess | SUCCESS
+NICHE | 5th guess | SUCCESS
+WOUND | 6th guess | SUCCESS
+RAVER | 6th guess | FAIL
+RHINO | 4th guess | SUCCESS
+GRASS | 6th guess | SUCCESS
+KEBAB | 6th guess | SUCCESS
+GRUFF | 5th guess | SUCCESS
+MONEY | 5th guess | SUCCESS
+SHALT | 5th guess | SUCCESS
+WRUNG | 4th guess | SUCCESS
+SPECS | 6th guess | FAIL
+VERBS | 6th guess | FAIL
+RENAL | 5th guess | SUCCESS
+HOLLY | 5th guess | SUCCESS
+SITAR | 4th guess | SUCCESS
+BARER | 6th guess | FAIL
+BLINK | 4th guess | SUCCESS
+RHINO | 4th guess | SUCCESS
+BLEAK | 4th guess | SUCCESS
+SHIRK | 4th guess | SUCCESS
+MINCE | 4th guess | SUCCESS
+FAIRY | 4th guess | SUCCESS
+PLACE | 5th guess | SUCCESS
+ENNUI | 5th guess | SUCCESS
+TENET | 4th guess | SUCCESS
+ANNEX | 6th guess | SUCCESS
+GLAZE | 4th guess | SUCCESS
+SMOCK | 4th guess | SUCCESS
+SENSE | 6th guess | FAIL
+SWORE | 4th guess | SUCCESS
+DENIM | 4th guess | SUCCESS
+SEIZE | 4th guess | SUCCESS
+ELECT | 4th guess | SUCCESS
+WHISK | 6th guess | SUCCESS
+SMELL | 5th guess | SUCCESS
+REACT | 5th guess | SUCCESS
+GOING | 4th guess | SUCCESS
+VIRUS | 4th guess | SUCCESS
+TRYST | 4th guess | SUCCESS
+SOWER | 6th guess | FAIL
+CHILI | 5th guess | SUCCESS
+GROUP | 4th guess | SUCCESS
+BAWDY | 4th guess | SUCCESS
+PUPIL | 4th guess | SUCCESS
+ONION | 5th guess | INIT
+STINT | 5th guess | SUCCESS
+POPPY | 6th guess | FAIL
+INPUT | 5th guess | SUCCESS
+SWELL | 5th guess | SUCCESS
+ALTAR | 5th guess | SUCCESS
+STUNT | 5th guess | SUCCESS
+EPOCH | 5th guess | SUCCESS
+AWARE | 6th guess | SUCCESS
+SHALL | 4th guess | SUCCESS
+DROWN | 4th guess | SUCCESS
+TROLL | 4th guess | SUCCESS
+VIDEO | 4th guess | SUCCESS
+FLYER | 4th guess | SUCCESS
+CLASS | 5th guess | SUCCESS
+ICING | 5th guess | SUCCESS
+CLUED | 4th guess | SUCCESS
+ANGEL | 5th guess | SUCCESS
+SHADY | 6th guess | FAIL
+ANODE | 4th guess | SUCCESS
+ALOFT | 5th guess | SUCCESS
+DECRY | 6th guess | SUCCESS
+SPIEL | 5th guess | SUCCESS
+ECLAT | 6th guess | FAIL
+INLET | 4th guess | SUCCESS
+QUACK | 6th guess | SUCCESS
+CHARD | 4th guess | SUCCESS
+YUMMY | 6th guess | FAIL
+DARED | 6th guess | FAIL
+SMITE | 6th guess | SUCCESS
+TULIP | 4th guess | SUCCESS
+SCALD | 4th guess | SUCCESS
+STOKE | 5th guess | SUCCESS
+SCALY | 4th guess | SUCCESS
+UNTIL | 4th guess | SUCCESS
+SWELL | 5th guess | SUCCESS
+GAYLY | 5th guess | SUCCESS
+GAPER | 6th guess | FAIL
+ALONG | 4th guess | SUCCESS
+WHACK | 4th guess | SUCCESS
+NATAL | 4th guess | SUCCESS
+CHAIN | 5th guess | SUCCESS
+ELITE | 4th guess | SUCCESS
+HELIX | 4th guess | SUCCESS
+SNIPE | 5th guess | SUCCESS
+BITTY | 6th guess | FAIL
+WITCH | 6th guess | FAIL
+COVET | 4th guess | SUCCESS
+TATER | 6th guess | FAIL
+-> At this point, I made an addition which takes into account the positioning of the yellow letters and filters the word list by them:
+PLUCK | 5th guess | SUCCESS
+BUGGY | 4th guess | SUCCESS
+GLOVE | 4th guess | SUCCESS
+KNOCK | 4th guess | SUCCESS
+PILAF | 4th guess | SUCCESS
+JUROR | 4th guess | SUCCESS
+WRYLY | 4th guess | SUCCESS
+SPRIG | 4th guess | SUCCESS
+LUCKY | 4th guess | SUCCESS
+CRISP | 4th guess | SUCCESS
+EMBER | 5th guess | SUCCESS
+SPLAT | 4th guess | SUCCESS
+SURLY | 4th guess | SUCCESS
+BAYOU | 4th guess | SUCCESS
+DITTO | 4th guess | SUCCESS
+BEZEL | 6th guess | SUCCESS
+SUGAR | 4th guess | SUCCESS
+PLATE | 4th guess | SUCCESS
+JAUNT | 6th guess | SUCCESS
+OUTDO | 4th guess | SUCCESS
+BONGO | 4th guess | SUCCESS
+SHAKY | 4th guess | SUCCESS
+CHEAP | 5th guess | SUCCESS
+SKUNK | 5th guess | SUCCESS
+ANKLE | 5th guess | SUCCESS
+GUILT | 4th guess | SUCCESS
+BLAST | 4th guess | SUCCESS
+BLOWN | 6th guess | SUCCESS
+SPEND | 4th guess | SUCCESS
+PASTE | 4th guess | SUCCESS
+FETCH | 4th guess | SUCCESS
+MUSHY | 6th guess | SUCCESS
+SPELL | 5th guess | SUCCESS
+AGILE | 4th guess | SUCCESS
+MURAL | 4th guess | SUCCESS
+ADMIT | 5th guess | SUCCESS
+SCOWL | 5th guess | SUCCESS
+TWIRL | 4th guess | SUCCESS
+LOGIN | 4th guess | SUCCESS
+WROTE | 4th guess | SUCCESS
+SLOOP | 5th guess | SUCCESS
+HOVEL | 4th guess | SUCCESS
+SPORT | 5th guess | SUCCESS
+POLAR | 4th guess | SUCCESS
+QUASI | 5th guess | SUCCESS
+GAYER | 5th guess | SUCCESS
+STASH | 4th guess | SUCCESS
+GIVER | 4th guess | SUCCESS
+CORER | 4th guess | SUCCESS
+SWING | 4th guess | SUCCESS
+ALOOF | 5th guess | SUCCESS
+MOWER | 6th guess | SUCCESS
+TUBER | 6th guess | SUCCESS
+SNORT | 4th guess | SUCCESS
+COACH | 5th guess | SUCCESS
+LUNAR | 4th guess | SUCCESS
+LOCUS | 5th guess | SUCCESS
+BOOBY | 5th guess | SUCCESS
+AXIOM | 4th guess | SUCCESS
+DRESS | 4th guess | SUCCESS
+GROVE | 5th guess | SUCCESS
+STEEP | 4th guess | SUCCESS
+ORBIT | 4th guess | SUCCESS

@@ -30,17 +30,26 @@ class Wordle_Round:
         self.present_letters = []
         self.correct_letters = ["", "", "", "", ""]
 
+        # Incorrect letter positioning - i'm sure there was a better way to format this rather than using
+        # multiple lists. Hopefully I can come back to this with better structuring knowledge and update.
+        self.first_letter_not = []
+        self.second_letter_not = []
+        self.third_letter_not = []
+        self.fourth_letter_not = []
+        self.fifth_letter_not = []
+
+
     def setup(self):
         self.driver.get("https://wordlegame.org/")
-        for i in range(0, 2):
-            print(f"Waiting for {2 - i}...")
+        wait_for = 5
+        for i in range(0, wait_for):
+            print(f"Waiting for {wait_for - i}...")
             time.sleep(1)
         # load words
         # Get word list
         with open('words.json', 'r') as fd:
              self.five_letter_words = json.load(fd)
         self.active_word_list = self.five_letter_words
-        print(f"Length of word list: {len(self.five_letter_words)}")
 
     def choose_first_word(self):
         # Filter word list for words with duplicate letters for the first guess
@@ -55,8 +64,8 @@ class Wordle_Round:
         for i in range(0, 5):
             top_five.append(letter_frequency[i][0])
 
-        # ChatGPT wrote this
-        # Find the words which contain the most letters from the list of the most common letters
+        # ChatGPT wrote parts of this, the sorting with key=lambda is currently outside my understanding.
+        # Find the words which contain the most letters from the list of the most common letters.
         words_with_count = []
         for word in filtered_words:
             count = sum(word.count(letter) for letter in top_five)
@@ -65,14 +74,13 @@ class Wordle_Round:
         top_words = [word for word, _ in words_with_count[:100]]
         word_submission = top_words[randint(0, len(top_words))]
         self.tested_letters = [i for i in word_submission]
-        print(f"Tested letters: {self.tested_letters}")
         return word_submission
 
 
     def choose_word_stage_2(self):
         letter_frequency = GetLetterFrequency_v2(self.active_word_list)
         top_fifteen = []
-        for i in range(0, 15):
+        for i in range(0, len(letter_frequency)):
             if letter_frequency[i][0] in self.tested_letters:
                 continue
             else:
@@ -95,17 +103,8 @@ class Wordle_Round:
         return word_submission
 
     def choose_word_stage_3(self):
-        all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
-        print(f"Number of Locked Rows: {len(all_locked_rows)}")
-        print(f"Length of word list: {len(self.active_word_list)} ||| Word list = {self.active_word_list}")
-        letter_frequency = GetLetterFrequency_v2(self.active_word_list)
-        top_five = []
-        top_x = 5
-        if len(letter_frequency) < top_x:
-            top_x = len(letter_frequency)
-
+        # If we know some of the letters, filter by them
         if self.correct_letters != ["", "", "", "", ""]:
-
             filtered_by_correct_letters = []
             for word in self.active_word_list:
                 # print(word)
@@ -114,10 +113,69 @@ class Wordle_Round:
                         filtered_by_correct_letters.append(word)
             self.active_word_list = filtered_by_correct_letters
 
-        good = False
+        # Filter by FIRST letter
+        if self.first_letter_not != False:
+            filtered_by_correct_letters = []
+            for word in self.active_word_list:
+                if word[0] in self.first_letter_not:
+                    continue
+                else:
+                    filtered_by_correct_letters.append(word)
+            self.active_word_list = filtered_by_correct_letters
 
+        # Filter by SECOND letter
+        if self.second_letter_not != False:
+            filtered_by_correct_letters = []
+            for word in self.active_word_list:
+                if word[1] in self.second_letter_not:
+                    continue
+                else:
+                    filtered_by_correct_letters.append(word)
+            self.active_word_list = filtered_by_correct_letters
+
+        # Filter by THIRD letter
+        if self.third_letter_not != False:
+            filtered_by_correct_letters = []
+            for word in self.active_word_list:
+                if word[2] in self.third_letter_not:
+                    continue
+                else:
+                    filtered_by_correct_letters.append(word)
+            self.active_word_list = filtered_by_correct_letters
+
+        # Filter by FOURTH letter
+        if self.fourth_letter_not != False:
+            filtered_by_correct_letters = []
+            for word in self.active_word_list:
+                if word[3] in self.fourth_letter_not:
+                    continue
+                else:
+                    filtered_by_correct_letters.append(word)
+            self.active_word_list = filtered_by_correct_letters
+
+        # Filter by FIFTH letter
+        if self.fifth_letter_not != False:
+            filtered_by_correct_letters = []
+            for word in self.active_word_list:
+                if word[4] in self.fifth_letter_not:
+                    continue
+                else:
+                    filtered_by_correct_letters.append(word)
+            self.active_word_list = filtered_by_correct_letters
+
+        good = False
         while not good:
-            word_submission = max(set(self.active_word_list), key=self.active_word_list.count)
+            try:
+                word_submission = max(set(self.active_word_list), key=self.active_word_list.count)
+            except:
+                print("Using word_submission exception")
+                print(self.active_word_list)
+                if len(self.active_word_list) == 0:
+                    print("Could be a word not in our list.")
+                    time.sleep(1000000)
+                word_submission = self.active_word_list[0]
+                good = True
+                break
             word_list = []
             for i in self.active_word_list:
                 if i == word_submission:
@@ -129,9 +187,9 @@ class Wordle_Round:
             for i in self.present_letters:
                 if i.isalpha():
                     present_letters.append(i)
-            #print(f"Considering submission... {word_submission}")
             good = all(letter in word_submission for letter in present_letters)
 
+        #remove current guess from word list
         word_list = []
         for i in self.active_word_list:
             if i == word_submission:
@@ -152,9 +210,7 @@ class Wordle_Round:
             for i in previous_word_letters:
                 if i.get_attribute("class").split(" ")[1] != "letter-correct":
                     won = False
-                    #print("not letter-correct")
                 else:
-                    #print("letter-correct")
                     continue
             if won == True:
                 print("Won on the last turn.")
@@ -172,7 +228,6 @@ class Wordle_Round:
             else:
                 continue
         if complete == True:
-            print("THIS IS SUCCESS EXIT")
             finish_state = "SUCCESS"
         return finish_state
 
@@ -193,19 +248,31 @@ class Wordle_Round:
 
     def negative_and_positive_matches(self):
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
-        previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
+        try:
+            previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
+        except:
+            time.sleep(10000000)
+        for i in range(0, len(previous_word_letters)):
 
-        for i in previous_word_letters:
-
-            if i.get_attribute("class").split(" ")[1] == "letter-absent":
-                self.absent_letters.append(i.text)
-            elif i.get_attribute("class").split(" ")[1] == "letter-correct" or "letter_elsewhere":
-                self.present_letters.append(i.text)
+            if previous_word_letters[i].get_attribute("class").split(" ")[1] == "letter-absent":
+                self.absent_letters.append(previous_word_letters[i].text)
+            elif previous_word_letters[i].get_attribute("class").split(" ")[1] == "letter-correct" or "letter-elsewhere":
+                self.present_letters.append(previous_word_letters[i].text)
                 self.present_letters = list(set(self.present_letters))
-            # except:
-            #     print(i.get_attribute("class").split(" "))
 
-
+            # Identify correct letters in the wrong position and record them.
+            # I'm certain there's a more graceful way to handle this.
+            if previous_word_letters[i].get_attribute("class").split(" ")[1] == "letter-elsewhere":
+                if i == 0:
+                    self.first_letter_not.append(previous_word_letters[i].text)
+                if i == 1:
+                    self.second_letter_not.append(previous_word_letters[i].text)
+                if i == 2:
+                    self.third_letter_not.append(previous_word_letters[i].text)
+                if i == 3:
+                    self.fourth_letter_not.append(previous_word_letters[i].text)
+                if i == 4:
+                    self.fifth_letter_not.append(previous_word_letters[i].text)
 
         # If you submit a word with duplicate letters, and the correct answer only has it once
         # the letter will be added to both of the above lists
@@ -239,6 +306,7 @@ class Wordle_Round:
 
     def identify_correct_letters(self):
         all_locked_rows = self.driver.find_elements(By.CLASS_NAME, "Row-locked-in")
+        #print(f'Length of all locked rows {len(all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter"))}')
         previous_word_letters = all_locked_rows[-1].find_elements(By.CLASS_NAME, "Row-letter")
 
         for i in range(0, len(previous_word_letters)):
@@ -270,9 +338,10 @@ while True:
         WordleRound.negative_and_positive_matches()
         WordleRound.identify_correct_letters()
 
+
     # Guessing in earnest x 3
     count = 3
-    for round in range(0, 4):
+    for round in range(0, 3):
         print("---------------------------------------------")
         count += 1
         try:
@@ -296,7 +365,7 @@ while True:
             WordleRound.negative_and_positive_matches()
             WordleRound.identify_correct_letters()
         except:
-            print(f"You either broke it or you won. The last word was {word}.")
+            print(f"You won. The last word was {word}.")
             with open("results.txt", 'a') as file:
                 file.write(word + f" | {count}th guess | {finish_state}\n")
             break
@@ -312,5 +381,3 @@ while True:
 
 # Website used, for reference - https://eslforums.com/5-letter-words/
 # Get5LetterWords("https://github.com/tabatkins/wordle-list/blob/main/words")
-# letter_frequency = GetLetterFrequency()
-# print(letter_frequency)
